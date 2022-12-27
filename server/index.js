@@ -1,4 +1,6 @@
+const packageJson = require('./package.json');
 const express = require('express');
+//const render = require('@render/cli');
 const http = require('http');
 const WebSocket = require('ws');
 const path = require('path');
@@ -7,6 +9,7 @@ const app = express();
 //const server = http.createServer(app);
 //const wss = new WebSocket.Server({ server });
 const wss = new WebSocket.Server({ port: 8080 });
+const version = packageJson.version;
 
 // store the connection Count
 let connectionCount = 0;
@@ -64,6 +67,8 @@ app.get('/game', (req, res) => {
 
 });
 
+console.log(process.env);
+console.log('version:' + version);
 console.log(`Root of server: ${__dirname}`);
 
 app.listen(3000, () => {
